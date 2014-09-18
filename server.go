@@ -125,13 +125,6 @@ func processPayload(payloadChannel chan *Payload, s *Server) error {
 
 	for {
 		currentPayload := <-payloadChannel
-		jsonData, _ := json.Marshal(winformat.NewWinFormat(currentPayload.Buffer))
-		var data = map[string]string{
-			"foo":  "bar",
-			"hoge": "hoge"}
-		fmt.Printf("%s\n", string(jsonData))
-		fmt.Printf("%s\n", data)
-
 		logger.Post(s.Config.TagName, winformat.NewWinFormat(currentPayload.Buffer))
 
 	}
